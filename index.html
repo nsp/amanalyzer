@@ -27,9 +27,146 @@
       // draws it.
       function drawCharts() {
           drawTimeline();
-	  drawPostHist();
+          drawScatter();
+          drawPostHist();
+          drawPie();
       }
 
+      function drawScatter() {
+          // Create the data table
+          var data = google.visualization.arrayToDataTable([
+          ['Words', 'Words Per Minute'],
+          [121, 2.166517],
+          [225, 30.201342],
+          [10, 6.666667],
+          [79, 22.253521],
+          [291, 27.069767],
+          [19, 12.666667],
+          [122, 28.932806],
+          [72, 13.292308],
+          [769, 109.596200],
+          [482, 13.552015],
+          [233, 25.464481],
+          [100, 16.901408],
+          [158, 19.708940],
+          [28, 14.358974],
+          [99, 21.444043],
+          [3, 5.806452],
+          [143, 21.943734],
+          [3, 2.432432],
+          [6, 45.000000],
+          [170, 23.831776],
+          [13, 13.928571],
+          [1, 2.608696],
+          [189, 25.426009],
+          [1, 0.218182],
+          [32, 30.000000],
+          [37, 15.205479],
+          [52, 2.813345],
+          [96, 20.645161],
+          [12, 5.806452],
+          [409, 29.318996],
+          [118, 27.335907],
+          [28, 21.265823],
+          [205, 29.425837],
+          [47, 17.735849],
+          [85, 36.170213],
+          [1, 1.818182],
+          [165, 29.819277],
+          [177, 16.213740],
+          [156, 34.666667],
+          [59, 16.619718],
+          [109, 24.132841],
+          [48, 13.457944],
+          [39, 32.500000],
+          [132, 25.222930],
+          [99, 39.337748],
+          [242, 25.340314],
+          [10, 8.571429],
+          [673, 37.632805],
+          [274, 23.154930],
+          [1, 0.697674],
+          [4, 5.853659],
+          [188, 21.902913],
+          [64, 31.219512],
+          [382, 31.440329],
+          [6, 3.529412],
+          [151, 29.415584],
+          [30, 19.354839],
+          [193, 41.956522],
+          [185, 37.883959],
+          [199, 52.139738],
+          [90, 33.333333],
+          [3, 8.571429],
+          [382, 22.274052],
+          [9, 8.437500],
+          [57, 29.739130],
+          [1, 2.307692],
+          [212, 33.038961],
+          [3, 3.396226],
+          [92, 25.437788],
+          [523, 15.896657],
+          [203, 31.801567],
+          [126, 45.818182],
+          [35, 33.870968],
+          [16, 13.333333],
+          [90, 39.705882],
+          [117, 38.571429],
+          [11, 0.571429],
+          [7, 1.714286],
+          [90, 32.530120],
+          [102, 41.632653],
+          [5, 3.703704],
+          [114, 40.235294],
+          [3, 3.829787],
+          [12, 21.176471],
+          [1, 0.697674],
+          [78, 35.187970],
+          [1, 0.413793],
+          [70, 29.787234],
+          [61, 14.409449],
+          [42, 39.375000],
+          [7, 5.384615],
+          [9, 6.206897],
+          [7, 1.359223],
+          [16, 32.000000],
+          [10, 19.354839],
+          [70, 24.852071],
+          [2, 5.217391],
+          [31, 20.439560],
+          [32, 61.935484],
+          [11, 12.452830],
+          [31, 17.064220],
+          [15, 29.032258],
+          [108, 28.051948],
+          [15, 7.758621],
+          [3, 12.000000],
+          [8, 7.741935],
+          [35, 30.000000],
+          [105, 26.694915],
+          [4, 15.000000],
+          [14, 9.655172],
+          [47, 43.384615],
+          [1, 0.882353],
+          [2, 1.935484],
+          [94, 25.066667],
+          [148, 41.690141],
+          [21, 27.391304],
+          [2, 7.058824],
+          [97, 37.792208],
+          [90, 38.028169],
+          [67, 21.382979],
+          [2, 5.714286],
+          [301, 34.269450]
+          ]);
+
+          var options = { title: 'Word vs Words Per Minute',
+                          legend: 'none'};
+                          
+          var chart = new google.visualization.ScatterChart(document.getElementById('scatter'));
+          chart.draw(data, options);
+      }
+      
       function drawTimeline() {
         // Create the data table.
         var data = new google.visualization.DataTable();
@@ -168,12 +305,12 @@
         // Set chart options
         var options = {'title': 'Posts Timeline',
                        'displayAnnotations': false,
-		       'displayAnnotationsFilter': false,
-		       'allowHtml': false};
+                       'displayAnnotationsFilter': false,
+                       'allowHtml': false};
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.AnnotatedTimeLine(
-	    document.getElementById('timeline'));
+            document.getElementById('timeline'));
         chart.draw(data, options);
       }
 
@@ -183,17 +320,66 @@
         data.addColumn('string', 'Word Count');
         data.addColumn('number', 'Number of Posts');
         data.addRows([
-          ['1-10', 3],
-          ['11-21', 1]
+          ['1-50', 59],
+          ['51-100', 22],
+          ['101-150', 14],
+          ['151-200', 11],
+          ['201-250', 6],
+          ['251-300', 2],
+          ['301-350', 1],
+          ['351-400', 2],
+          ['401-450', 1],
+          ['451-500', 1],
+          ['501-550', 1],
+          ['551-600', 0],
+          ['601-650', 0],
+          ['651-700', 1],
+          ['701-750', 0],
+          ['751-800', 1]
         ]);
 
         // Set chart options
         var options = {'title':'Word Counts',
-		       legend: {position: 'in'}};
+                       legend: 'none',
+                       hAxis: {title: 'Word Count'},
+                       vAxis: {title: 'Number of Posts'}};
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.ColumnChart(
-	    document.getElementById('postlen_hist'));
+            document.getElementById('postlen_hist'));
+        chart.draw(data, options);
+      }
+
+      function drawPie() {
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Word Count');
+        data.addColumn('number', 'Number of Posts');
+        data.addRows([
+          ['1-50', 59],
+          ['51-100', 22],
+          ['101-150', 14],
+          ['151-200', 11],
+          ['201-250', 6],
+          ['251-300', 2],
+          ['301-350', 1],
+          ['351-400', 2],
+          ['401-450', 1],
+          ['451-500', 1],
+          ['501-550', 1],
+          ['551-600', 0],
+          ['601-650', 0],
+          ['651-700', 1],
+          ['701-750', 0],
+          ['751-800', 1]
+        ]);
+
+        // Set chart options
+        var options = {'title':'Word Counts'}
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(
+            document.getElementById('postlen_pie'));
         chart.draw(data, options);
       }
     </script>
@@ -218,7 +404,7 @@
         <hr>
 
         <section id="main_content">
-          <h3>What it's all about</h3>
+<h3>What it's all about</h3>
 
 <p>This project is just a collection of scripts I threw together to visualize Dan Harmon's AMA. I enjoyed every one of his answers, and was also impressed by how thoroughly and quickly he replied. The response where he cried for the second time was posted less than 15 minutes after the previous comment. Here's what I've come up with.</p>
 
@@ -228,13 +414,144 @@
 <div id="timeline" style="width: 800px; height: 400px;"></div>
 <p></p>
 
+<h3>Length vs Typing Speed</h3>
+<div id="scatter" style="width: 800px; height: 400px;"></div>
+<p></p>
+
 <h3>Post length frequency</h3>
 <div id="postlen_hist" style="width: 800px; height: 400px;"></div>
-<p>Coming Soon</p>
+<p></p>
+
+<h3>Post length frequency</h3>
+<div id="postlen_pie" style="width: 800px; height: 400px;"></div>
+<p></p>
 
 <h3>Context links for all answers</h3>
 
-<ul><li>Coming Soon</li></ul>
+<ul>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x5o2g?context=1">c5x5o2g</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x5stv?context=1">c5x5stv</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x5tqg?context=1">c5x5tqg</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x5w2z?context=1">c5x5w2z</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x6306?context=1">c5x6306</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x63zm?context=1">c5x63zm</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x66lq?context=1">c5x66lq</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x6a2q?context=1">c5x6a2q</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x6ejo?context=1">c5x6ejo</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x71qe?context=1">c5x71qe</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x77jp?context=1">c5x77jp</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x7bew?context=1">c5x7bew</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x7glm?context=1">c5x7glm</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x7htl?context=1">c5x7htl</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x7ks1?context=1">c5x7ks1</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x7l3x?context=1">c5x7l3x</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x7p12?context=1">c5x7p12</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x7psc?context=1">c5x7psc</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x7pvm?context=1">c5x7pvm</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x7u4p?context=1">c5x7u4p</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x7upt?context=1">c5x7upt</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x7uy2?context=1">c5x7uy2</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x7z3n?context=1">c5x7z3n</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x81ae?context=1">c5x81ae</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x81tq?context=1">c5x81tq</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x831c?context=1">c5x831c</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x8dql?context=1">c5x8dql</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x8gfz?context=1">c5x8gfz</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x8hn1?context=1">c5x8hn1</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x8pee?context=1">c5x8pee</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x8rv4?context=1">c5x8rv4</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x8sks?context=1">c5x8sks</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x8wgt?context=1">c5x8wgt</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x8xwl?context=1">c5x8xwl</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x8z7c?context=1">c5x8z7c</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x8zik?context=1">c5x8zik</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x92iq?context=1">c5x92iq</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x98il?context=1">c5x98il</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x9ax7?context=1">c5x9ax7</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x9ctk?context=1">c5x9ctk</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x9far?context=1">c5x9far</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x9h8g?context=1">c5x9h8g</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x9hu4?context=1">c5x9hu4</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x9kol?context=1">c5x9kol</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x9m0v?context=1">c5x9m0v</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x9qza?context=1">c5x9qza</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5x9rmu?context=1">c5x9rmu</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xa0x4?context=1">c5xa0x4</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xa741?context=1">c5xa741</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xa7v4?context=1">c5xa7v4</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xa87g?context=1">c5xa87g</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xacu3?context=1">c5xacu3</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xadwc?context=1">c5xadwc</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xak9r?context=1">c5xak9r</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xal41?context=1">c5xal41</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xanon?context=1">c5xanon</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xaoic?context=1">c5xaoic</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xaqtx?context=1">c5xaqtx</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xatbu?context=1">c5xatbu</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xavad?context=1">c5xavad</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xawpn?context=1">c5xawpn</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xawx1?context=1">c5xawx1</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xb5ol?context=1">c5xb5ol</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xb68s?context=1">c5xb68s</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xb79d?context=1">c5xb79d</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xb7hs?context=1">c5xb7hs</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xbaxm?context=1">c5xbaxm</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xbbdr?context=1">c5xbbdr</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xbdae?context=1">c5xbdae</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xbus1?context=1">c5xbus1</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xby95?context=1">c5xby95</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xbzt2?context=1">c5xbzt2</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xc0cr?context=1">c5xc0cr</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xc104?context=1">c5xc104</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xc28s?context=1">c5xc28s</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xc3x9?context=1">c5xc3x9</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xce5v?context=1">c5xce5v</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xcgcp?context=1">c5xcgcp</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xchuq?context=1">c5xchuq</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xcj4x?context=1">c5xcj4x</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xcjtc?context=1">c5xcjtc</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xclc0?context=1">c5xclc0</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xclrr?context=1">c5xclrr</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xcm26?context=1">c5xcm26</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xcmuw?context=1">c5xcmuw</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xco1l?context=1">c5xco1l</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xcpd6?context=1">c5xcpd6</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xcqoc?context=1">c5xcqoc</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xcsz2?context=1">c5xcsz2</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xctkf?context=1">c5xctkf</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xcuaj?context=1">c5xcuaj</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xcv1b?context=1">c5xcv1b</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xcxxv?context=1">c5xcxxv</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xcy7z?context=1">c5xcy7z</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xcyhz?context=1">c5xcyhz</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xd00v?context=1">c5xd00v</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xd089?context=1">c5xd089</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xd11p?context=1">c5xd11p</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xd1bj?context=1">c5xd1bj</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xd1s5?context=1">c5xd1s5</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xd2s5?context=1">c5xd2s5</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xd322?context=1">c5xd322</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xd575?context=1">c5xd575</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xd69s?context=1">c5xd69s</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xd6fg?context=1">c5xd6fg</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xd6zn?context=1">c5xd6zn</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xd7o2?context=1">c5xd7o2</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xd9tg?context=1">c5xd9tg</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xd9yl?context=1">c5xd9yl</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xdasq?context=1">c5xdasq</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xdbec?context=1">c5xdbec</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xdc1m?context=1">c5xdc1m</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xdcmb?context=1">c5xdcmb</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xdeos?context=1">c5xdeos</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xdgo9?context=1">c5xdgo9</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xdh42?context=1">c5xdh42</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xdhan?context=1">c5xdhan</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xdiq6?context=1">c5xdiq6</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xdk3b?context=1">c5xdk3b</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xdlu8?context=1">c5xdlu8</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xdm1i?context=1">c5xdm1i</a></li>
+<li><a href="http://reddit.com/r/IAmA/comments/yne9x/i_am_dan_harmon_creator_of_community_writer_of/c5xdqzk?context=1">c5xdqzk</a></li>
+</ul>
         </section>
 
         <footer>

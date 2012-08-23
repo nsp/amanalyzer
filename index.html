@@ -17,7 +17,7 @@
     <script type="text/javascript">
 
       // Load the Visualization API and the piechart package.
-      google.load('visualization', '1.0', {'packages':['corechart']});
+      google.load('visualization', '1.0', {'packages':['corechart', 'annotatedtimeline']});
 
       // Set a callback to run when the Google Visualization API is loaded.
       google.setOnLoadCallback(drawCharts);
@@ -33,46 +33,49 @@
       function drawTimeline() {
         // Create the data table.
         var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Mushrooms', 3],
-          ['Onions', 1],
-          ['Olives', 1],
-          ['Zucchini', 1],
-          ['Pepperoni', 2]
+       data.addColumn('date', 'DateTime');
+       data.addColumn('number', 'Words in Post');
+       data.addColumn('string', 'title1');
+       data.addColumn('string', 'text1');
+       data.addColumn('number', 'Est. WPM');
+       data.addColumn('string', 'title2');
+       data.addColumn('string', 'text2');
+       data.addRows([
+          [new Date(2012, 8, 23, 11, 0, 0), 1, undefined, undefined, 4, undefined, undefined],
+          [new Date(2012, 8, 23, 12, 0, 0), 3, undefined, undefined, 2, undefined, undefined],
+          [new Date(2012, 8, 23, 13, 0, 0), 2, undefined, undefined, 3, undefined, undefined],
+          [new Date(2012, 8, 23, 14, 0, 0), 4, undefined, undefined, 1, undefined, undefined]
         ]);
 
         // Set chart options
-        var options = {'title':'How Much Pizza I Ate Last Night',
-                       'width':400,
-                       'height':300};
+        var options = {'title': 'Posts Timeline',
+                       'displayAnnotations': true,
+		       'displayAnnotationsFilter': true,
+		       'allowHtml': true};
 
         // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('timeline'));
+        var chart = new google.visualization.AnnotatedTimeLine(
+	    document.getElementById('timeline'));
         chart.draw(data, options);
       }
 
       function drawPostHist() {
         // Create the data table.
         var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
+        data.addColumn('string', 'Word Count');
+        data.addColumn('number', 'Number of Posts');
         data.addRows([
-          ['Mushrooms', 3],
-          ['Onions', 1],
-          ['Olives', 1],
-          ['Zucchini', 1],
-          ['Pepperoni', 2]
+          ['1-10', 3],
+          ['11-21', 1]
         ]);
 
         // Set chart options
-        var options = {'title':'How Much Pizza I Ate Last Night',
-                       'width':400,
-                       'height':300};
+        var options = {'title':'Word Counts',
+		       legend: {position: 'in'}};
 
         // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('postlen_hist'));
+        var chart = new google.visualization.ColumnChart(
+	    document.getElementById('postlen_hist'));
         chart.draw(data, options);
       }
     </script>
